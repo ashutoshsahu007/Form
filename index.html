@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Registration Form</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #ccded0;
+        padding: 20px;
+        background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);
+      }
+      .form-container {
+        background-color: #fff;
+        padding: 20px;
+        /* border-radius: 5px; */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 700px;
+        margin: auto;
+      }
+      h1 {
+        text-align: center;
+        
+        background: -webkit-linear-gradient(
+    right,
+    #011839,
+    #2c026f,
+    #011839,
+    #2c026f
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      label {
+        display: block;
+        font-weight: bold;
+      }
+      input[type="text"],
+      input[type="number"],
+      input[type="email"],
+      input[type="file"],
+      input[type="date"],
+      input[type="tel"],
+      input[type="url"],
+      select,
+      textarea,
+      button {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        /* border-radius: 4px; */
+      }
+      .submit-btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        /* background-color: #4caf50; */
+        background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);
+        color: white;
+        border: none;
+        /* border-radius: 4px; */
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .submit-btn:hover {
+        background-color: #45a049;
+      }
+      .additional-fields {
+        display: none;
+      }
+    
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Company Registration Form</h1>
+      <form id="companyForm">
+        <!-- Company Type Selection -->
+        <div class="form-group">
+          <label for="companyType">Select Company Type:</label>
+          <select id="companyType" name="companyType" onchange="showFields()">
+            <option value="">Company</option>
+            <option value="Public Limited Company">
+              Public Limited Company
+            </option>
+            <option value="Private Limited Company">
+              Private Limited Company
+            </option>
+            <option value="Sole Proprietorship">Sole Proprietorship</option>
+            <option value="Partnership">Partnership / LLP </option>
+          </select>
+        </div>
+
+        <!-- Additional Fields Based on Company Type -->
+        <div id="additionalFields">
+          <!-- Public Limited Company -->
+          <div id="plcFields" class="additional-fields">
+            <!-- <div class="form-group">
+
+              <label for="shareholders">Company CIN </label>
+              <input type="number" id="shareholders" name="shareholders" />
+            </div>
+
+            <div class="form-group">
+              <label for="shareholders">Company Pan </label>
+              <input type="number" id="shareholders" name="shareholders" />
+            </div>
+            <div class="form-group" id="shareholdersDetails"></div>
+
+            <div id="oneShareHolder">
+              <label for="">Name</label>
+              <input type="number" />
+              <label for="">Mobile</label>
+              <input type="number" />
+              <label for="">Identity</label>
+              <input type="file" />
+            </div>
+
+            <button type="button" onclick="cloneDiv()">Add Shareholders</button>
+
+            <div class="form-group">
+              <label for="Identity">Identity Proof</label>
+              <input type="file" id="" name="" />
+            </div>
+
+            <div class="form-group">
+              <label for="Identity">Address Proof</label>
+              <input type="text" id="" name="" />
+            </div>
+
+            <div class="form-group">
+              <label for="Identity">Pan Card Details</label>
+              <input type="text" id="" name="" />
+            </div>
+
+            <div class="form-group">
+              <label for="Identity">Company Office Address Proof</label>
+              <input type="file" id="" name="" />
+            </div>
+
+            <div class="form-group">
+              <label for="Identity">Landlord Conset Letter</label>
+              <input type="file" id="" name="" />
+            </div>
+
+            <div class="form-group">
+              <label for="Identity">Digital Signature Certificates</label>
+              <input type="file" id="" name="" />
+            </div>
+
+            <div class="form-group">
+              <label for="Identity">Foundational Documents</label>
+              <input type="file" id="" name="" />
+            </div> -->
+
+            <h1>1. Company Information</h1>
+            <div class="form-group">
+              <label for="companyName">Company Name</label>
+              <input type="text" id="companyName" name="companyName" placeholder="Enter Your Company Name" />
+            </div>
+            <div class="form-group">
+              <label for="companyRegistrationNumber">Company Registration Number</label>
+              <input type="number" id="companyRegistrationNumber" name="companyRegistrationNumber" placeholder="Enter Your Company Registerd Number" />
+            </div>
+            <div class="form-group">
+              <label for="companyPan">Company PAN Number</label>
+              <input type="number" id="companyPan" name="companyPan" placeholder="Enter Your Company PAN Number" />
+              <input type="file" name="Uplaod PAN " />
+            </div>
+            <div class="form-group">
+              <label for="tanNumber">Company TAN Number</label>
+              <input type="number" id="tanNumber" name="tanNumber" placeholder="Enter Your Company TAN Number"/>
+              <input type="file" name="Upload TAN " />
+            </div>
+            <div class="form-group">
+              <label for="dateOfIncorporation">Date of Incorporation</label>
+              <input type="date" id="dateOfIncorporation" name="dateOfIncorporation" placeholder="Enter Your Date Of Incorporation" />
+            </div>
+            <div class="form-group">
+              <label for="udyamNumber">Udyam Certification Number</label>
+              <input type="number" id="udyamNumber" name="udyamNumber" placeholder="Enter Your Udyam Certification Number"/>
+              <input type="file" name="Upload Udyam Certificates" />
+            </div>
+            <div class="form-group">
+              <label for="companyAddress">Company Address</label>
+                <textarea type="text" rows="5" cols="5" id="addressDirector" name="addressDirector" placeholder="Enter Full Address Of Company " ></textarea>
+               
+              </textarea>
+            </div>
+            <div class="form-group">
+              <label for="companyEmail">Company Email Address</label>
+              <input type="email" id="companyEmail" name="companyEmail" placeholder="Enter Your Company Email Address" />
+            </div>
+            <div class="form-group">
+              <label for="companyPhone">Company Phone Number</label>
+              <input type="number" id="companyPhone" name="companyPhone" placeholder="Enter Your Company Phone Number" />
+            </div>
+            <div class="form-group">
+              <label for="website"
+                >Website : Company's official website</label
+              >
+              <input type="url" id="website" name="website" placeholder="Enter Your Company Website" />
+            </div>
+           
+         
+
+            <h1>2. Director's Information</h1>
+            <div class="form-group">
+              <label for="fullName">Full Name of Director(s)</label>
+              <input type="text" id="fullName" name="fullName" placeholder="Enter Director's Full Name" />
+            </div>
+            <div class="form-group">
+              <label for="directorIdentification">Director Identification Number</label>
+              <input type="number" id="directorIdentification" name="directorIdentification" placeholder="Enter Director Identification Number"/>
+            </div>
+           
+            <div class="form-group">
+              <label for="contact">Contact Information</label>
+              <input type="number" id="contact" name="contact" placeholder="Enter Your Contact Information " />
+            </div>
+          
+         
+            <div class="form-group">
+              <label for="dirSignature">Director's Signature</label>
+              <input type="file" id="dirSignature" name="dirSignature" placeholder="Upload Director's Signature" />
+            </div>
+          </div>
+
+          <!-- Private Limited Company -->
+          <div id="privateLtdFields" class="additional-fields">
+            <!-- <div class="form-group">
+
+
+              <label for="shareholders">Number of Shareholders:</label>
+              <input type="number" id="shareholders" name="shareholders" />
+            </div>
+
+            <div class="form-group">
+              <label for="shareholders">Company CIN </label>
+              <input type="number" id="shareholders" name="shareholders" />
+            </div>
+
+            <div class="form-group">
+              <label for="shareholders">Company Pan </label>
+              <input type="number" id="shareholders" name="shareholders" />
+            </div> -->
+
+
+            <h1>1. Company Information</h1>
+            <div class="form-group">
+              <label for="companyName">Company Name</label>
+              <input type="text" id="companyName" name="companyName" placeholder="Enter Your Company Name" />
+            </div>
+            <div class="form-group">
+              <label for="companyRegistrationNumber">Company Registration Number</label>
+              <input type="number" id="companyRegistrationNumber" name="companyRegistrationNumber" placeholder="Enter Your Company Registerd Number" />
+            </div>
+            <div class="form-group">
+              <label for="companyPan">Company PAN Number</label>
+              <input type="number" id="companyPan" name="companyPan" placeholder="Enter Your Company PAN Number" />
+              <input type="file" name="Uplaod PAN Number" />
+            </div>
+            <div class="form-group">
+              <label for="tanNumber">Company TAN Number</label>
+              <input type="number" id="tanNumber" name="tanNumber" placeholder="Enter Your Company TAN Number"/>
+              <input type="file" name="Upload TAN Number" />
+            </div>
+            <div class="form-group">
+              <label for="dateOfIncorporation">Date of Incorporation</label>
+              <input type="date" id="dateOfIncorporation" name="dateOfIncorporation" placeholder="Enter Your Date Of Incorporation" />
+            </div>
+            <div class="form-group">
+              <label for="udyamNumber">Udyam Certification Number</label>
+              <input type="number" id="udyamNumber" name="udyamNumber" placeholder="Enter Your Udyam Certification Number"/>
+              <input type="file" name="Upload Udyam Certificates" />
+            </div>
+            <div class="form-group">
+              <label for="companyAddress">Company Address</label>
+                <textarea type="text" rows="5" cols="5" id="addressDirector" name="addressDirector" placeholder="Enter Full Address Of Company " ></textarea>
+               
+              </textarea>
+            </div>
+            <div class="form-group">
+              <label for="companyEmail">Company Email Address</label>
+              <input type="email" id="companyEmail" name="companyEmail" placeholder="Enter Your Company Email Address" />
+            </div>
+            <div class="form-group">
+              <label for="companyPhone">Company Phone Number</label>
+              <input type="number" id="companyPhone" name="companyPhone" placeholder="Enter Your Company Phone Number" />
+            </div>
+            <div class="form-group">
+              <label for="website"
+                >Website : Company's official website</label
+              >
+              <input type="url" id="website" name="website" placeholder="Enter Your Company Website" />
+            </div>
+           
+
+            <h1>2. Director's Information</h1>
+            <div class="form-group">
+              <label for="fullName">Full Name of Director(s)</label>
+              <input type="text" id="fullName" name="fullName" placeholder="Enter Director's Full Name" />
+            </div>
+            <div class="form-group">
+              <label for="directorIdentification">Director Identification Number</label>
+              <input type="number" id="directorIdentification" name="directorIdentification" placeholder="Enter Director Identification Number"/>
+            </div>
+           
+            <div class="form-group">
+              <label for="contact">Contact Information</label>
+              <input type="number" id="contact" name="contact" placeholder="Enter Your Contact Information " />
+            </div>
+          
+         
+            <div class="form-group">
+              <label for="dirSignature">Director's Signature</label>
+              <input type="file" id="dirSignature" name="dirSignature" placeholder="Upload Director's Signature" />
+            </div>       
+          
+          </div>
+
+          <!-- Sole Proprietorship -->
+          <div id="solePropFields" class="additional-fields">
+            <h1>Busineess Information Details</h1>
+
+            <div class="form-group">
+              <label for="businessName">Business Name:</label>
+              <input type="text" id="businessName" name="businessName" />
+            </div>
+
+           
+
+
+            <div class="form-group">
+              <label for="businessRegNumber"
+                >Business Registration Number</label
+              >
+              <input
+                type="text"
+                id="businessRegNumber"
+                name="businessRegNumber"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="businessAddress">Business Address</label>
+              <input type="text" id="businessAddress" name="businessAddress" />
+            </div>
+
+            <div class="form-group">
+              <label for="gstNumber">GST Number </label>
+              <input type="text" id="gstNumber" name="gstNumber" />
+            </div>
+        
+            <div class="form-group">
+              <label for="taxIdentification"
+                >PAN Number</label
+              >
+              <input
+                type="text"
+                id="taxIdentification"
+                name="taxIdentification"
+              />
+              <input type="file" />
+            </div>
+
+            <div class="form-group">
+              <label for="taxIdentification"
+                >TAN Number</label
+              >
+              <input
+                type="text"
+                id="taxIdentification"
+                name="taxIdentification"
+              />
+              <input type="file" />
+            </div>
+
+          
+
+
+            
+            <div class="form-group">
+              <label for="gstNumber">Contact Number </label>
+              <input type="text" id="gstNumber" name="gstNumber" placeholder="Enter Contact Number" />
+            </div>
+
+            <div class="form-group">
+              <label for="emailAddress">Business Email Address : </label>
+              <input type="text" id="emailAddress" name="emailAddress" placeholder="Enter Email Address" />
+            </div>
+
+            <h1>proprietor's Personal Information</h1>
+            <div class="form-group">
+              <label for="">Full Name Of proprietor
+              </label>
+              <input type="text" id="" name="" placeholder="Enter Full Name Of Proprietorship" />
+            </div>
+
+       
+
+            <div class="form-group">
+              <label for="">Phone Number</label>
+              <input type="text" id="" name="" />
+            </div>
+
+            <div class="form-group">
+              <label for="">Email Address</label>
+              <input type="text" id="" name="" />
+            </div>
+
+        
+            <div class="form-group">
+              <label for="">Government-Issued ID</label>
+              <input type="text" id="" name="" />
+              <input type="file" />
+            </div>
+          </div>
+
+          <!-- Partnership -->
+          <div id="partnershipFields" class="additional-fields">
+
+            <h1>1. Company Information</h1>
+            <div class="form-group">
+              <label for="companyName">Company Name</label>
+              <input type="text" id="companyName" name="companyName" placeholder="Enter Your Company Name" />
+            </div>
+            <div class="form-group">
+              <label for="companyRegistrationNumber">Company Registration Number</label>
+              <input type="number" id="companyRegistrationNumber" name="companyRegistrationNumber" placeholder="Enter Your Company Registerd Number" />
+            </div>
+            <div class="form-group">
+              <label for="companyPan">Company PAN Number</label>
+              <input type="number" id="companyPan" name="companyPan" placeholder="Enter Your Company PAN Number" />
+              <input type="file" name="Uplaod PAN Number" />
+            </div>
+            <div class="form-group">
+              <label for="tanNumber">Company TAN Number</label>
+              <input type="number" id="tanNumber" name="tanNumber" placeholder="Enter Your Company TAN Number"/>
+              <input type="file" name="Upload TAN Number" />
+            </div>
+            <div class="form-group">
+              <label for="dateOfIncorporation">Date of Incorporation</label>
+              <input type="date" id="dateOfIncorporation" name="dateOfIncorporation" placeholder="Enter Your Date Of Incorporation" />
+            </div>
+            <div class="form-group">
+              <label for="udyamNumber">Udyam Certification Number</label>
+              <input type="number" id="udyamNumber" name="udyamNumber" placeholder="Enter Your Udyam Certification Number"/>
+              <input type="file" name="Upload Udyam Certificates" />
+            </div>
+            <div class="form-group">
+              <label for="companyAddress">Company Address</label>
+                <textarea type="text" rows="5" cols="5" id="addressDirector" name="addressDirector" placeholder="Enter Full Address Of Company " ></textarea>
+               
+              </textarea>
+            </div>
+            <div class="form-group">
+              <label for="companyEmail">Company Email Address</label>
+              <input type="email" id="companyEmail" name="companyEmail" placeholder="Enter Your Company Email Address" />
+            </div>
+            <div class="form-group">
+              <label for="companyPhone">Company Phone Number</label>
+              <input type="number" id="companyPhone" name="companyPhone" placeholder="Enter Your Company Phone Number" />
+            </div>
+            <div class="form-group">
+              <label for="website"
+                >Website : Company's official website</label
+              >
+              <input type="url" id="website" name="website" placeholder="Enter Your Company Website" />
+            </div>
+
+
+            <div id="partnerContainer">
+
+            <div id="partner">
+
+            <h1> Partnership Information</h1>
+
+            <div class="form-group">
+              <label for="partnerName">Partner's Name</label>
+              <input type="text" id="partnerName" name="partnerName" placeholder="Enter Partner's Name" />
+            </div>
+            
+            <div class="form-group">
+              <label for="partnerEmail">Partners' Email</label>
+              <input type="email" id="partnerEmail" name="partnerEmail" placeholder="Enter Partner's Email" />
+            </div>
+
+            <div class="form-group">
+              <label for="partnerContact">Partners' Contact </label>
+              <input type="tel" id="partnerContact" name="partnerContact" placeholder="Enter Partner's Contact" />
+            </div>
+         
+           
+            <div class="form-group">
+              <label for="partnerSignature">Signature Of Partner</label>
+              <input type="file" id="partnerSignature" name="partnerSignature" />
+            </div>
+
+            </div>
+          </div>
+          
+            <div><button type="button" onclick="cloneDiv2()">Add More Partners </button></div>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+
+    <script>
+   
+      function cloneDiv() {
+        const shareholdersDetails = document.getElementById(
+          "shareholdersDetails"
+        );
+
+        const oneShareHolder = document.getElementById("oneShareHolder");
+
+        shareholdersDetails.style.display = "block";
+        oneShareHolder.style.display = "block";
+
+        for (let i = 0; i < 1; i++) {
+          const clonedDiv = oneShareHolder.cloneNode(true); // Clone the original div
+          shareholdersDetails.appendChild(clonedDiv); // Append the cloned div to the container
+        }
+        console.log("Helo sahu");
+      }
+
+      function cloneDiv2() {
+
+        const partnerContainer = document.getElementById(
+          "partnerContainer"
+        );
+
+        const partner = document.getElementById("partner");
+
+        partnerContainer.style.display = "block";
+        partner.style.display = "block";
+
+        for (let i = 0; i < 1; i++) {
+          const clonedDiv = partner.cloneNode(true); // Clone the original div
+          partnerContainer.appendChild(clonedDiv); // Append the cloned div to the container
+        }
+       
+      }
+
+      function showHoldersField() {
+        console.log("In the start of function");
+
+        const numberOfShareHolders =
+          document.getElementById("noOfShareholders").value;
+
+        console.log(numberOfShareHolders);
+
+        const shareholdersDetails = document.getElementById(
+          "shareholdersDetails"
+        );
+
+        const oneShareHolder = document.getElementById("oneShareHolder");
+
+        if (numberOfShareHolders) {
+          shareholdersDetails.style.display = "block";
+          oneShareHolder.style.display = "block";
+
+          shareholdersDetails.innerHTML = "";
+
+          for (let i = 0; i < numberOfShareHolders - 1; i++) {
+            const clonedDiv = oneShareHolder.cloneNode(true); // Clone the original div
+            shareholdersDetails.appendChild(clonedDiv); // Append the cloned div to the container
+          }
+        }
+      }
+
+      function showFields() {
+        const otherFields = document.getElementById("shareholdersDetails");
+        // otherFields.style.display = "none";
+
+        const oneShareHolder = document.getElementById("oneShareHolder");
+        // oneShareHolder.style.display = "none";
+
+
+
+        const partnerContainer = document.getElementById(
+          "partnerContainer"
+        );
+
+        const partner = document.getElementById("partner");
+
+        partnerContainer.style.display = "none";
+        partner.style.display = "none";
+
+        const companyType = document.getElementById("companyType").value;
+        const additionalFields =
+          document.querySelectorAll(".additional-fields");
+        additionalFields.forEach((field) => (field.style.display = "none"));
+
+        if (companyType === "Public Limited Company") {
+          document.getElementById("plcFields").style.display = "block";
+        } else if (companyType === "Private Limited Company") {
+          document.getElementById("privateLtdFields").style.display = "block";
+        } else if (companyType === "Sole Proprietorship") {
+          document.getElementById("solePropFields").style.display = "block";
+        } else if (companyType === "Partnership") {
+          document.getElementById("partnershipFields").style.display = "block";
+
+          document.getElementById(
+          "partnerContainer"
+        ).style.display ="block";
+         document.getElementById("partner").style.display ="block";
+        } 
+      }
+    </script>
+  </body>
+</html>
